@@ -13,22 +13,23 @@ def armar_casos(datos,lista_paises):
     fecha = []
     for localizacion in lista_paises: #Lista paises es una lista de cada localizacion
         for key , value in datos.items(): #Buscamos que por cada pais me arme los casos y las fechas
-            if (localizacion == value["location"]):
-                casos.append(value["new_cases"])
-                fecha.append(value["date"])
-        armar_plot(casos,fecha,value["location"])#Aca mandamos la lista con los casos, y la fecha para hacer los plots, y el nombre unico del pais que no deberia variar
+
+            #if (localizacion == value["location"]):
+                #casos.append(value["new_cases"])
+                #fecha.append(value["date"])
+        #armar_plot(casos,fecha,value["location"])#Aca mandamos la lista con los casos, y la fecha para hacer los plots, y el nombre unico del pais que no deberia variar
 
 
-def armar_plot(casos,fechas,localidad):
-    plt.figure(figsize=(18,6))
-    plt.xlabel('Fechas')
-    plt.ylabel('Casos Diarios')
-    plt.xticks(rotation=90)
-    plt.plot(fechas,casos)
-    plt.yscale('log')
-    plt.xscale('log')
-    plt.grid()
-    plt.show()
+#"def armar_plot(casos,fechas,localidad):
+    #plt.figure(figsize=(18,6))
+    #plt.xlabel('Fechas')
+    #plt.ylabel('Casos Diarios')
+    #plt.xticks(rotation=90)
+    #plt.plot(fechas,casos)
+    #plt.yscale('log')
+    #plt.xscale('log')
+    #plt.grid()
+   # plt.show()
 
 
 
