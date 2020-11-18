@@ -12,12 +12,7 @@ def armar_casos(datos,lista_paises):
     casos = []
     fecha = []
     for localizacion in lista_paises: #Lista paises es una lista de cada localizacion
-        for key , value in datos.items(): #Buscamos que por cada pais me arme los casos y las fechas
 
-            #if (localizacion == value["location"]):
-                #casos.append(value["new_cases"])
-                #fecha.append(value["date"])
-        #armar_plot(casos,fecha,value["location"])#Aca mandamos la lista con los casos, y la fecha para hacer los plots, y el nombre unico del pais que no deberia variar
 
 
 #"def armar_plot(casos,fechas,localidad):
