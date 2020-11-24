@@ -71,7 +71,8 @@ while centinela != 'Hola':  # un control de error humilde, que no este vacia la 
     print(lista_paises)
     if not lista_paises:
         print("Error! La lista esta vacia!")
-    elif not lista_paises in paises_total:
+    result = all(elem in paises_total for elem in lista_paises)
+    if result == False:
         print("Error! Ese pais no se encuentra en el csv de paises! Intente con otro!")
     else:
         centinela = 'Hola'
