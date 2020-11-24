@@ -1,13 +1,13 @@
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import pandas as pd
 from datetime import datetime
 
-from matplotlib.legend_handler import HandlerLine2D
+import matplotlib.pyplot as plt
+import pandas as pd
 
-def Convertir(string):
+
+def convertir(string):
     li = list(string.split(" "))
     return li
+
 
 def armar_paises(datos):  # Aca armo una listita de paises para despues tener donde comparar en la otra funcion
     lista = []
@@ -17,7 +17,8 @@ def armar_paises(datos):  # Aca armo una listita de paises para despues tener do
     return lista
 
 
-def armar_casos(datos,lista_paises):
+def armar_casos(datos, lista_paises):
+    global Pais
     casos = []
     fecha = []
     muertes = []
@@ -32,6 +33,9 @@ def armar_casos(datos,lista_paises):
                 muertes.append(value["total_deaths"])
         armar_plot(casos, fecha, Pais, muertes)  # Aca mandamos la lista con los casos, y la fecha para hacer los
         # plots, y el nombre unico del pais que no deberia variar
+
+
+plt.show()
 
 
 def armar_plot(casos_totales, fechas, localidad, muertes_totales):
@@ -51,26 +55,27 @@ def armar_plot(casos_totales, fechas, localidad, muertes_totales):
     muertes_totales.clear()
 
 
-archivo = pd.read_csv("full_data.csv", usecols=['date', 'location', 'total_cases','total_deaths'])
-# Bastante util el usecols, me deja elegir que columnas del cvs quiero usar, en vez de tener que complicarme con un drop del dataframe.
+archivo = pd.read_csv("full_data.csv", usecols=['date', 'location', 'total_cases', 'total_deaths'])
+# Bastante util el usecols, me deja elegir que columnas del cvs quiero
+# , en vez de tener que complicarme con un drop del dataframe.
 
 datos = archivo.to_dict("index")
 paises_total = []
 paises_total = armar_paises(datos)
-lista_paises = []
+lista_paises = ['Anguilla']
 centinela = 'Chau'
-while centinela != 'Hola': # un control de error humilde, que no este vacia la lista, y que exista en la lista de datos que tenemos
-    print("Que paises con covid desea graficar? ELiga de la siguiente lista :\n",paises_total)
+while centinela != 'Hola':  # un control de error humilde, que no este vacia la lista, y que exista en la lista de datos que tenemos
+    print("Que paises con covid desea graficar? ELiga de la siguiente lista :\n", paises_total)
     lista_paises = input()
-
-
+    lista_paises = convertir(lista_paises)
+    print(lista_paises)
     if not lista_paises:
         print("Error! La lista esta vacia!")
-    elif(not lista_paises in paises_total):
+    elif not lista_paises in paises_total:
         print("Error! Ese pais no se encuentra en el csv de paises! Intente con otro!")
     else:
         centinela = 'Hola'
-        lista_paises = Convertir(lista_paises)
+
 else:
 
-    armar_casos(datos,lista_paises)
+    armar_casos(datos, lista_paises)
